@@ -50,3 +50,4 @@ ai-pdf-assistant/
    ```bash
    python app.py
    ```
+   
