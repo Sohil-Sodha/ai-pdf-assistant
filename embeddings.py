@@ -14,15 +14,14 @@ from config import config
 
 # The Gemini embedding model to use. Kept as a single constant here so
 # it's easy to find and change later without touching any calling code.
-EMBEDDING_MODEL = "gemini-text-embedding-3-large"
-
+EMBEDDING_MODEL = "gemini-embedding-001"
 
 def create_embedding(text: str) -> list[float]:
 
     # --- Problem 1: empty text ---
     # There's nothing meaningful to embed, and sending empty input to the
     # API would just waste a request, so we fail fast and clearly.
-    if not text or text.strip():
+    if not text or not text.strip():
         raise ValueError("Cannot create an embedding for empty text.")
     
     # --- Problem 2: invalid API configuration ---
