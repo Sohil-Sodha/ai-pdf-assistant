@@ -76,7 +76,7 @@ class VectorStore:
                 embedding is empty.
         """
         # --- Reject empty text ---
-        if not text or text.strip():
+        if not text or not text.strip():
             raise ValueError("Cannot store an empty text chunk.")
         
         # --- Reject an empty embedding ---
@@ -152,7 +152,7 @@ class VectorStore:
                 continue
 
             score = _cosine_similarity(query_embedding, record.embedding)
-            results.append(SearchResult(text=record, score=score))
+            results.append(SearchResult(text=record.text, score=score))
 
         # Highest similarity first.
         results.sort(key=lambda result: result.score, reverse=True)
