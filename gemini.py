@@ -17,7 +17,7 @@ from config import config
 # The Gemini model used for answer generation. Kept as a single
 # constant, separate from embeddings.py's EMBEDDING_MODEL, since
 # generation and embedding are different kinds of models.
-GENERATION_MODEL = "gemini-2.5-flash"
+GENERATION_MODEL = "gemini-3.5-flash-lite"
 
 def generate_answer(question: str, context: list[str]) -> str:
     """
