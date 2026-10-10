@@ -44,6 +44,12 @@ def chunk_text(text: str, chunk_size: int = 1000, overlap: int = 200) -> list[st
         if piece:
             chunks.append(piece)
 
+        # If this chunk already reaches the end of the text, we're done.
+        # Without this check, the loop would emit one more chunk that is
+        # entirely contained in the overlap of the chunk we just added.
+        if end >= text_length:
+            break
+
         start += step
 
     return chunks
