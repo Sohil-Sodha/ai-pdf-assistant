@@ -69,7 +69,14 @@ def generate_answer(question: str, context: list[str]) -> str:
         # failure that doesn't surface as an APIError.
         raise RuntimeError(f"Unexpected error while generating an answer: {error}") from error
     
-    return response.text
+    answer = response.text
+    if not answer or not answer.strip():
+        raise RuntimeError(
+            "Gemini returned an empty response (it may have been blocked "
+            "by a safety filter). Try rephrasing the question."
+        )
+    
+    return answer
 
 
 def _build_prompt(question: str, chunks: list[str]) -> str:
